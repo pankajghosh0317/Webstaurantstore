@@ -99,7 +99,7 @@ public class Webstaurantstorestepdef {
 
 	@Then("^user verify Your cart is empty message appear$")
 	public void user_verify_Your_cart_is_empty_message_appear() throws Throwable {
-		WebElement messageappears=driver.findElement(By.xpath("//*[@class='header-1']"));
+		WebElement messageappears=driver.findElement(By.xpath("//*[contains(text(),'Your cart is empty')]"));
 
         String expected ="Your cart is empty.";
     	String actual=messageappears.getText();
