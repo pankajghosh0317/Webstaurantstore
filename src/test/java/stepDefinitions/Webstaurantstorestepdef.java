@@ -75,9 +75,11 @@ public class Webstaurantstorestepdef {
 
 	@When("^user click on view cart on pop up window$")
 	public void user_click_on_view_cart_on_pop_up_window() throws Throwable {
+		
 		WebElement frame=driver.findElement(By.xpath("//*[@data-role='notification']"));
 		WebElement viewcart=driver.findElement(By.xpath("//*[@href='/viewcart.cfm']"));
 		frame.click();
+		wait.until(ExpectedConditions.elementToBeClickable(viewcart));
 		viewcart.click();
 		
 	}
@@ -86,6 +88,7 @@ public class Webstaurantstorestepdef {
 	public void user_click_on_empty_cart_button_on_web_page() throws Throwable {
 		
 		WebElement emptycart=driver.findElement(By.xpath("(//*[contains(text(),'Empty Cart')])[2]"));
+		
 		emptycart.click();
 	}
 
@@ -102,14 +105,11 @@ public class Webstaurantstorestepdef {
 		WebElement messageappears=driver.findElement(By.xpath("//*[contains(text(),'Your cart is empty')]"));
 
         String expected ="Your cart is empty.";
-    	String actual=messageappears.getText();
+    	wait.until(ExpectedConditions.visibilityOf(messageappears));
+        String actual=messageappears.getText();
     	Assert.assertEquals(expected, actual);
-		
+		driver.close();
 		
 	}
-
-
-		
-	
 	}
 
